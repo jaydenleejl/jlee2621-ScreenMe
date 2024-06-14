@@ -1,3 +1,10 @@
+/* 
+main.js handles the front-end logic for displaying movies, navigating between different sections,
+updating bookmarks and dynamically generating HTML content based on the movie data
+*/
+
+// this sets up an event listener that runs when the DOM content is fully loaded
+// it initialises variables to store references to DOM elements and fetches movie data from the server
 document.addEventListener('DOMContentLoaded', () => {
 	const mainContent = document.getElementById('main-content');
 	const navHome = document.getElementById('nav-home');
@@ -12,7 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	fetch('/movies')
 		.then(response => response.json())
 		.then(movies => {
-			// Function to load the Home screen content
+			// function to load the 'Home Screen' content
+			// displaying various sections like "Explore, For You, New this week and Top Rated of the week" using the fetched movie data
+			// it creates HTML for each section dynamically based on the movie data, including genres and bookmark status
+			// it calls 'bindBookmarkEvents() and bindMovieItemEvents()' to bind event listeners to the bookmark buttons and movie items
 			function loadHomeScreen(movies) {
 				let exploreBannerHTML = '';
 
@@ -211,11 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 				bindBookmarkEvents();
 				bindMovieItemEvents();
-				updateActiveNav(navHome);
-				lastScreen = 'home'; // Set the last visited screen to 'home'
+				updateActiveNav(navHome); // sets the active navigation button to 'navHome'
+				lastScreen = 'home'; // sets the last visited screen to 'home'
 			}
 
-			// Function to load the Insights screen content
+			// Function to load the 'Insights Screen' content
+			// generates HTML for each genre dynamically and updates the 'mainContent' with this HTML
 			function loadInsightsScreen() {
 				const sortedGenres = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a]);
 
@@ -233,11 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${genreHTML}
                     </div>
                 `;
-				updateActiveNav(navInsights);
-				lastScreen = 'insights'; // Set the last visited screen to 'insights'
+				updateActiveNav(navInsights); // sets the active navigation button to 'navInsights'
+				lastScreen = 'insights'; // sets the last visited screen to 'insights'
 			}
 
 			// Function to update genre counts (upon watching a movie)
+			// it increments the count for each genre in the movie
 			function updateGenreCounts(movie) {
 				[movie.genre1, movie.genre2, movie.genre3].forEach(genre => {
 					if (genre !== 'null') {
@@ -248,10 +260,13 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 					}
 				});
-				loadInsightsScreen();
+				loadInsightsScreen(); // calls 'loadInsightsScreen()' to refresh the insights screen
 			}
 
-			// Function to load the Watchlist screen content
+			// Function to load the 'Watchlist Screen' content
+			// displaying the movies that have been bookmarked
+			// it creates HTML for each bookmarked movie dynamically and updates the 'mainContent' with this HTML
+			// it calls 'bindBookmarkEvents() and bindMovieItemEvents()' to bind event listeners to the bookmark buttons and movie items
 			function loadWatchlistScreen() {
 				let watchlistHTML = '';
 
@@ -296,11 +311,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 				bindBookmarkEvents();
 				bindMovieItemEvents();
-				updateActiveNav(navWatchlist);
-				lastScreen = 'watchlist'; // Set the last visited screen to 'watchlist'
+				updateActiveNav(navWatchlist); // sets the active navigation button to 'navWatchlist'
+				lastScreen = 'watchlist'; // sets the last visited screen to 'watchlist'
 			}
 
-			// Function to load the Individual Movie screen content
+			// Function to load the 'Individual Movie Screen' content
+			// displaying detailed information about the movie that the user selected
+			// generates HTML for the movie details dynamically and updates the 'mainContent' with this HTML
 			function loadIndividualMovieScreen(movieId) {
 				const movie = movies.find(m => m.id === movieId);
 				if (!movie) {
@@ -377,9 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fas fa-play play-icon"></i> Watch Now
                     </button>
                 `;
-				document.querySelector('header').style.display = 'none';
-				document.querySelector('footer').style.display = 'none';
+				document.querySelector('header').style.display = 'none'; // hides the header
+				document.querySelector('footer').style.display = 'none'; // hides the footer
 
+				// sets up event listeners for the 'back-button' and 'watch-now' button, and binds the bookmark button event
 				document.querySelector('.back-button').addEventListener('click', () => {
 					if (lastScreen === 'home') {
 						loadHomeScreen(movies);
@@ -426,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			// Function to update the active navigation button
+			// this function works in the way by removing the 'active' class from all navigation buttons and adding it to the specified 'activeButton'
 			function updateActiveNav(activeButton) {
 				document.querySelectorAll('footer nav button').forEach(button => {
 					button.classList.remove('active');
@@ -433,7 +452,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				activeButton.classList.add('active');
 			}
 
-			// Function to bind bookmark button events
+			// Function to bind event listeners to the bookmark buttons
+			// toggling the bookmark status when clicked and sending a POST request to update the server
 			function bindBookmarkEvents() {
 				const bookmarks = document.querySelectorAll('.bookmark');
 
@@ -463,7 +483,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 			}
 
-			// Function to bind movie item events
+			// Function to bind event listeners to the movie items
+			// loading the individual movie screen when a movie item is clicked
 			function bindMovieItemEvents() {
 				const movieItems = document.querySelectorAll('.movie-item');
 
@@ -476,6 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			// Function to update the watchlist
+			// re-rendering the bookmarked movies and re-binding event listeners to the updated elements
 			function updateWatchlist() {
 				const watchlistContainer = document.querySelector('.watchlist-container');
 				if (!watchlistContainer) return; // If watchlist container is not present, exit
@@ -520,11 +542,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			// Event listeners for navigation buttons
+			// loads the respective screens when the navigation buttons are clicked
 			navHome.addEventListener('click', () => loadHomeScreen(movies));
 			navInsights.addEventListener('click', loadInsightsScreen);
 			navWatchlist.addEventListener('click', loadWatchlistScreen);
 
-			// Load the Home screen by default
+			// Loads the home screen by default when the page is first loaded
 			loadHomeScreen(movies);
 		})
 		.catch(error => console.error('Error fetching movies:', error));
