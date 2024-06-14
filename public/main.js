@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="existing-reviews">
                             <div class="review-container">
                                 <div class="user-profile">
-                                    <img src="user-profile2.jpg" alt="User Profile" class="user-profile-pic">
+                                    <img src="user-profile.jpg" alt="User Profile" class="user-profile-pic">
                                     <span class="username">${movie.userID}</span>
                                 </div>
                                 <div class="rating">
