@@ -49,6 +49,9 @@ This project encountered several limitations which influenced the final implemen
 The constraints, despite impacting the project's breadth and feature offerings, have yielded valuable insights and learning opportunities. They have also facilitated the identification of crucial areas for future development and improvement.
 
 **Development**
+![old](https://github.com/jaydenleejl/jlee2621-ScreenMe/assets/141607881/a9ff68d1-b993-4845-aeeb-a3bf95ff1790)
+![new-01](https://github.com/jaydenleejl/jlee2621-ScreenMe/assets/141607881/8235b468-ad6b-4d00-a9a7-4e1a0cf0648e)
+![new-02](https://github.com/jaydenleejl/jlee2621-ScreenMe/assets/141607881/2ef69a7c-e208-419a-af03-10e82b63a5c2)
 
 In the course of developing the web app, several adjustments were imperative due to the identified limitations. 
 
