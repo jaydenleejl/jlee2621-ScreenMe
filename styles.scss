@@ -1,0 +1,722 @@
+// Variables
+$primary-color: #a70000;
+$secondary-color: #8b8b8b;
+$background-color: #faf7ff;
+$font-family: "Poppins", sans-serif;
+$font-color: #595959;
+$light-color: #ffffff;
+$dark-color: #444444;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+// Base styles
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  box-sizing: border-box;
+  background-color: $light-color;
+}
+
+// Header styles
+header {
+  @include flex-center;
+  padding: 24px;
+  background-color: $light-color;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .circular-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background-color: $background-color;
+    color: $font-color;
+    font-size: 1em;
+    @include flex-center;
+    margin-left: 16px;
+
+    i {
+      font-size: 1.2em;
+      color: $font-color;
+    }
+  }
+}
+
+// Search container styles
+.search-container {
+  @include flex-center;
+  background-color: $background-color;
+  padding: 16px;
+  border-radius: 24px;
+  flex: 1;
+  margin-right: 0;
+
+  .search-icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+    color: #aaa;
+  }
+
+  input[type="text"] {
+    border: none;
+    background: none;
+    outline: none;
+    flex: 1;
+    font-weight: 400;
+    font-size: 16px;
+    color: #a6a6a6;
+  }
+}
+
+// Main styles
+main {
+  padding: 24px;
+  margin-top: 0;
+  background-color: $light-color;
+}
+
+// Headings
+h2 {
+  color: $primary-color;
+  font-weight: 500;
+  font-size: 1.25em;
+  margin-bottom: 8px;
+}
+
+// Paragraphs
+p {
+  &.description,
+  &.watchlist-description {
+    color: $font-color;
+    font-size: 1em;
+    margin-bottom: 16px;
+  }
+
+  &.watchlist-history {
+    color: $font-color;
+    font-size: 1em;
+    margin-bottom: 24px;
+    margin-top: 0;
+  }
+}
+
+// Containers
+.container {
+  margin-bottom: 20px;
+}
+
+.genre-container {
+  @include flex-center;
+  justify-content: space-between;
+  padding: 12px;
+  background: $light-color;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .genre {
+    font-weight: 500;
+    color: $secondary-color;
+  }
+
+  .count {
+    font-weight: 500;
+    color: $dark-color;
+  }
+}
+
+// Explore container styles
+.explore-container {
+  .background-image {
+    border-radius: 10px;
+    color: $light-color;
+    position: relative;
+
+    .bookmark {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      border-radius: 50%;
+      color: #212121;
+      padding: 10px 12px;
+      cursor: pointer;
+
+      &.active {
+        background: $primary-color;
+        color: $light-color;
+      }
+
+      i {
+        font-size: 16px;
+        height: 0;
+      }
+    }
+
+    .content-group {
+      color: $light-color;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 16px;
+      border-radius: 10px;
+      left: 0;
+      bottom: 7px;
+      width: calc(100% - 32px);
+      position: absolute;
+    }
+  }
+}
+
+// Tags
+.tags button {
+  background: $secondary-color;
+  padding: 4px 8px;
+  font-size: 0.75em;
+  margin-right: 4px;
+  border: none;
+  border-radius: 10px;
+  color: $light-color;
+}
+
+// Headings
+h3 {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+// Buttons
+.buttons {
+  display: flex;
+  margin-top: 10px;
+}
+
+.info-button {
+  border: none;
+  padding: 12px 0;
+  font-size: 1em;
+  border-radius: 16px;
+  color: $secondary-color;
+  background: $light-color;
+  font-family: $font-family;
+  width: 100%;
+}
+
+.watch-button {
+  background: $primary-color;
+  color: $light-color;
+  margin-right: 0;
+  @include flex-center;
+
+  .play-icon {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}
+
+// Carousel container
+.carousel-container {
+  margin-bottom: 40px;
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &.watchlist-carousel,
+  &.new-week-carousel {
+    height: 300px;
+  }
+}
+
+// Movie container
+.movie-container,
+.recommendation-container,
+.new-week-container,
+.top-rated-container {
+  min-width: 200px;
+  margin-right: 24px;
+  position: relative;
+
+  &.recommendation-container,
+  &.new-week-container {
+    min-width: 231px;
+
+    .background-image {
+      height: 100%;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .content-group {
+      color: $light-color;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      border-radius: 10px;
+      left: 0;
+      bottom: 0;
+      width: calc(100% - 16px);
+      position: absolute;
+
+      .rating {
+        margin-top: -5px;
+      }
+    }
+  }
+
+  img {
+    width: 200px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+
+    &.recommendation-container {
+      width: 231px;
+      height: 300px;
+    }
+
+    &.new-week-container {
+      width: 231px;
+      height: 300px;
+    }
+  }
+
+  .tags {
+    margin-top: 7px;
+  }
+
+  .rating {
+    margin-top: -5px;
+  }
+
+  .background-image {
+    .bookmark {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      border-radius: 50%;
+      color: #212121;
+      padding: 10px 12px;
+      cursor: pointer;
+
+      &.active {
+        background: $primary-color;
+        color: $light-color;
+      }
+
+      i {
+        font-size: 16px;
+        height: 0;
+      }
+    }
+  }
+}
+
+// Footer styles
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: $light-color;
+  padding: 24px 0;
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #a6a6a6;
+
+    i {
+      font-size: 1.5em;
+      color: #a6a6a6;
+    }
+
+    span {
+      margin-top: 12px;
+      color: #a6a6a6;
+      font-family: $font-family;
+    }
+
+    &.active,
+    &.active i,
+    &.active span {
+      color: $primary-color;
+    }
+  }
+}
+
+// Watchlist styles
+.watchlist-title {
+  color: $primary-color;
+  font-weight: 500;
+  font-size: 1.25em;
+  margin-bottom: 8px;
+}
+
+.watchlist-description {
+  color: $font-color;
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.watchlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -16px;
+
+  .watchlist-item {
+    min-width: 183px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    position: relative;
+
+    .watchlist-background-image {
+      height: 100%;
+      border-radius: 10px;
+      position: relative;
+
+      img {
+        width: 183px;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    }
+
+    .watchlist-content-group {
+      color: $light-color;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0 8px 8px 8px;
+      border-radius: 10px;
+      left: 0;
+      bottom: 7px;
+      width: calc(100% - 16px);
+      position: absolute;
+
+      .watchlist-tags {
+        margin-top: 0;
+
+        button {
+          margin-top: 8px;
+          background: $secondary-color;
+          padding: 4px 8px;
+          font-size: 0.75em;
+          margin-right: 4px;
+          border: none;
+          border-radius: 10px;
+          color: $light-color;
+        }
+      }
+
+      h3 {
+        margin: 8px 0;
+      }
+
+      .watchlist-rating {
+        display: flex;
+        align-items: center;
+        margin-top: -5px;
+
+        i {
+          color: #ffd700;
+          margin-right: 5px;
+        }
+      }
+
+      .watchlist-bookmark {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.4);
+        border: none;
+        border-radius: 50%;
+        color: #212121;
+        padding: 10px 12px;
+        cursor: pointer;
+
+        &.active {
+          background: $primary-color;
+          color: $light-color;
+        }
+
+        i {
+          font-size: 16px;
+          height: 0;
+        }
+      }
+    }
+  }
+}
+
+// Individual movie background
+.individual-movie-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 0px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .back-button {
+    position: sticky;
+    top: 16px;
+    left: 16px;
+    background: $background-color;
+    border: none;
+    border-radius: 50%;
+    color: #212121;
+    padding: 16px;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 1em;
+  }
+
+  .bookmark-button {
+    position: absolute;
+    width: 46px;
+    height: 50px;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 50%;
+    color: #212121;
+    cursor: pointer;
+    z-index: 1001;
+
+    i {
+      font-size: 1.5em;
+    }
+
+    &.active {
+      background: $primary-color;
+      color: $light-color;
+    }
+  }
+
+  .content-group {
+    color: $light-color;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(100% - 32px);
+
+    .tags button {
+      background: $secondary-color;
+      padding: 4px 8px;
+      font-size: 0.75em;
+      margin-right: 4px;
+      border: none;
+      border-radius: 10px;
+      color: $light-color;
+      margin-top: 8px;
+    }
+
+    h3 {
+      margin: 12px 0 4px 0;
+      font-size: 1em;
+    }
+
+    p {
+      font-size: 0.75em;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Details container
+.details-container {
+  margin-top: 320px;
+  padding: 0;
+
+  h2 {
+    margin-bottom: 4px;
+  }
+
+  .detail-item {
+    padding: 20px 0 16px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $secondary-color;
+
+    .detail-label {
+      font-weight: 400;
+    }
+
+    .detail-value {
+      font-weight: 400;
+      color: $dark-color;
+    }
+  }
+}
+
+// Impressions container
+.impressions-container {
+  margin-top: 40px;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+// Rating overview
+.rating-overview {
+  display: flex;
+  align-items: center;
+  padding: 24px 0 40px 0;
+
+  .rating-value {
+    font-size: 2.5em;
+    color: $dark-color;
+    font-weight: bold;
+    margin-right: 24px;
+  }
+
+  .rating-stars {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 1.75em;
+      margin-right: 24px;
+      color: $primary-color;
+    }
+  }
+
+  .rating-count {
+    font-size: 1em;
+    color: $dark-color;
+    margin-top: 8px;
+  }
+}
+
+// Existing review
+.existing-review {
+  padding: 16px 0;
+  border-bottom: 0;
+
+  .user-info {
+    @include flex-center;
+    margin-bottom: 8px;
+
+    .user-profile {
+      @include flex-center;
+
+      .user-profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .username {
+        margin-left: 8px;
+      }
+    }
+
+    .user-username {
+      font-weight: 500;
+      color: $dark-color;
+    }
+  }
+
+  .review-container {
+    .rating {
+      display: block;
+      margin-top: 16px;
+      color: $dark-color;
+
+      .rating-stars {
+        margin-top: 16px;
+
+        i {
+          margin-right: 8px;
+          font-size: 1.25em;
+          color: $dark-color;
+        }
+      }
+
+      label {
+        font-size: 1em;
+        font-weight: 500;
+        color: $dark-color;
+      }
+    }
+
+    .review {
+      margin-top: 16px;
+      font-size: 1em;
+
+      label {
+        font-weight: 500;
+        color: $dark-color;
+      }
+
+      p {
+        font-size: 1em;
+        font-weight: 400;
+        color: $dark-color;
+        margin-top: 8px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Watch now button
+.watch-now-button {
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 1em;
+  padding: 20px 0;
+  border-radius: 16px;
+  margin-top: 20px;
+  background: $primary-color;
+  color: $light-color;
+  width: 100%;
+  border: 0;
+  position: sticky;
+  bottom: 24px;
+
+  i {
+    margin-right: 16px;
+  }
+}
+
+// Media query for desktop
+@media (min-width: 768px) {
+  /* Already responsive for mobile and desktop, using mobile-first approach */
+}

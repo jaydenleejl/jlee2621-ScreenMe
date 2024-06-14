@@ -1,10 +1,11 @@
 {
-  "name": "sleep-tracker",
+  "name": "screen-me",
   "version": "1.0.0",
-  "description": "SLeep tracking web application",
+  "description": "movie tracker",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "sass": "sass styles.scss styles.css"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -13,5 +14,8 @@
     "csv-writer": "^1.6.0",
     "express": "^4.19.2",
     "mongoose": "^8.4.1"
+  },
+  "devDependencies": {
+    "sass": "^1.77.5"
   }
 }
